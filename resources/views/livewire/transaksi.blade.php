@@ -35,6 +35,22 @@
 
                                                                             <div class="mb-2 row">
                                                                                 <label for="inputEmail3"
+                                                                                    class="col-sm-4 col-form-label">Nota
+                                                                                    <small
+                                                                                        class="text-danger">*</small></label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        wire:model='form.nota' disabled>
+                                                                                    @error('form.nota')
+                                                                                        <span
+                                                                                            class="form-text text-danger">{{ $message }}</span>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="mb-2 row">
+                                                                                <label for="inputEmail3"
                                                                                     class="col-sm-4 col-form-label">Nomor
                                                                                     Polisi
                                                                                     <small
@@ -58,7 +74,8 @@
                                                                                     @enderror
                                                                                 </div>
                                                                             </div>
-
+                                                                        </div>
+                                                                        <div class="col-md-6">
                                                                             <div class="mb-2 row">
                                                                                 <label for="inputEmail3"
                                                                                     class="col-sm-4 col-form-label">Tanggal
@@ -74,9 +91,6 @@
                                                                                     @enderror
                                                                                 </div>
                                                                             </div>
-
-                                                                        </div>
-                                                                        <div class="col-md-6">
                                                                             <div class="mb-2 row">
                                                                                 <label for="inputEmail3"
                                                                                     class="col-sm-4 col-form-label">Pengguna
@@ -268,15 +282,6 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="card-body">
-                                                                        <div class="row">
-                                                                            <div class="col-md-2">
-                                                                                <input type="text"
-                                                                                    class="form-control"
-                                                                                    placeholder="cari"
-                                                                                    wire:model.live='cari'>
-                                                                            </div>
-                                                                        </div>
-
                                                                         <div class="table-responsive">
                                                                             <table class="table">
                                                                                 <thead>
@@ -329,11 +334,13 @@
                                                                                         </tr>
                                                                                     @endforeach
                                                                                 </tbody>
-                                                                                <tfoot>
-                                                                                    <th colspan="4">Total</th>
-                                                                                    <th>{{ \Laraindo\RupiahFormat::currency($total) }}
-                                                                                    </th>
-                                                                                </tfoot>
+                                                                                @if ($total)
+                                                                                    <tfoot>
+                                                                                        <th colspan="4">Total</th>
+                                                                                        <th>{{ \Laraindo\RupiahFormat::currency($total) }}
+                                                                                        </th>
+                                                                                    </tfoot>
+                                                                                @endif
                                                                             </table>
                                                                         </div>
                                                                         {{ $post->links() }}

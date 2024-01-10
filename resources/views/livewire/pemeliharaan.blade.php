@@ -122,7 +122,7 @@
                                                                     <div class="table-responsive">
                                                                         <table class="table">
                                                                             <thead>
-                                                                                <th>No</th>
+                                                                                <th>Nota</th>
                                                                                 <th>Tanggal</th>
                                                                                 <th>Nopol</th>
                                                                                 <th>Pengguna</th>
@@ -132,13 +132,16 @@
                                                                             <tbody>
                                                                                 @foreach ($post as $item)
                                                                                     <tr wire:key='{{ $item->id }}'>
-                                                                                        <td>{{ $loop->index + $post->firstItem() }}
-                                                                                        </td>
-                                                                                        <td> {{ $item->tgl ?? '-' }}
+                                                                                        {{-- <td>{{ $loop->index + $post->firstItem() }}
+                                                                                        </td> --}}
+                                                                                        <td> {{ $item->nota ?? '-' }}
+                                                                                        <td>
+                                                                                            {{ \Carbon\Carbon::createFromFormat('Y-m-d', $item->tgl)->isoFormat('D MMMM Y') }}
                                                                                         </td>
                                                                                         <td> {{ $item->kendaraan_id ?? '-' }}
                                                                                         </td>
                                                                                         <td> {{ $item->pengguna_kendaraan ?? '-' }}
+                                                                                        <td>{{ \Laraindo\RupiahFormat::currency($item->transaksi_sum_jumlah ?? 0) }}
                                                                                         </td>
                                                                                         <td>
                                                                                             <div

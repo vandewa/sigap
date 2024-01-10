@@ -24,7 +24,7 @@ class Perawatan extends Component
 
     public function getEdit($a)
     {
-        $this->form = ModelsPerawatan::find($a)->only(['nopol', 'merk', 'tipe']);
+        $this->form = ModelsPerawatan::find($a)->only(['nama']);
         $this->idHapus = $a;
         $this->edit = true;
     }

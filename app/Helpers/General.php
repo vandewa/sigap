@@ -34,6 +34,19 @@ if (!function_exists('file_name')) {
     }
 }
 
+
+if (!function_exists('gen_nota')) {
+    function gen_nota()
+    {
+        $no = Date('y/m/') . str_pad(1, 4, '0', STR_PAD_LEFT);
+        $terakhir = \App\Models\Pemeliharaan::whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'))->orderBy('created_at', 'desc')->first();
+        if ($terakhir) {
+            $no = Date('y/m/') . str_pad((int) substr($terakhir->nota, -4) + 1, 4, 0, STR_PAD_LEFT);
+        }
+        return 'SIGAP/' . $no;
+    }
+}
+
 if (!function_exists('get_code')) {
     function get_code($a)
     {
@@ -259,7 +272,7 @@ if (!function_exists('gen_no_resep')) {
         if ($terakhir) {
             $no = Date('y') . str_pad((int) substr($terakhir->resep_no, -8) + 1, 8, 0, STR_PAD_LEFT);
         }
-        return "RSP-".$no;
+        return "RSP-" . $no;
     }
 }
 

@@ -69,9 +69,9 @@
 
                       <li
                           class="nav-item  
-                      {{ Request::segment(1) == 'pemeliharaan' ? 'active' : '' }}
-                      {{ Request::segment(1) == 'transaksi' ? 'active' : '' }}
-                      ">
+                        {{ Request::segment(1) == 'pemeliharaan' ? 'active' : '' }}
+                        {{ Request::segment(1) == 'transaksi' ? 'active' : '' }}
+                        ">
                           <a href="{{ route('pemeliharaan') }}"
                               class="nav-link  
                               {{ Request::segment(1) == 'pemeliharaan' ? 'active' : '' }}
@@ -80,6 +80,20 @@
                               <i class="nav-icon fas fa-car"></i>
                               <p>
                                   Pemeliharaan
+                              </p>
+                          </a>
+                      </li>
+                      <li
+                          class="nav-item  
+                        {{ Request::segment(1) == 'keuangan' ? 'active' : '' }}
+                        ">
+                          <a href="{{ route('keuangan') }}"
+                              class="nav-link  
+                              {{ Request::segment(1) == 'keuangan' ? 'active' : '' }}
+                              ">
+                              <i class="nav-icon fas fa-money-bill-alt"></i>
+                              <p>
+                                  Keuangan
                               </p>
                           </a>
                       </li>
@@ -133,11 +147,13 @@
                           class="nav-item
                                 {{ Request::segment(2) == 'kendaraan' ? 'menu-is-opening menu-open' : '' }}
                                 {{ Request::segment(2) == 'perawatan' ? 'menu-is-opening menu-open' : '' }}
+                                {{ Request::segment(2) == 'saldo' ? 'menu-is-opening menu-open' : '' }}
                               ">
                           <a href="#"
                               class="nav-link
                                   {{ Request::segment(2) == 'kendaraan' ? 'active' : '' }}
                                   {{ Request::segment(2) == 'perawatan' ? 'active' : '' }}
+                                  {{ Request::segment(2) == 'saldo' ? 'active' : '' }}
                                   ">
                               <i class="nav-icon fa-solid fa-file-lines"></i>
                               <p>
@@ -166,6 +182,17 @@
                                           <i class="far fa-circle nav-icon ml-2"></i>
                                       @endif
                                       <p>Perawatan</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="{{ route('master.saldo') }}"
+                                      class="nav-link {{ Request::segment(2) == 'saldo' ? 'active' : '' }}">
+                                      @if (Request::segment(2) == 'saldo')
+                                          <i class="far fa-dot-circle nav-icon ml-2"></i>
+                                      @else
+                                          <i class="far fa-circle nav-icon ml-2"></i>
+                                      @endif
+                                      <p>Saldo</p>
                                   </a>
                               </li>
                           </ul>

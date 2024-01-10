@@ -16,4 +16,9 @@ class Transaksi extends Model
         return $this->belongsTo(Perawatan::class, 'perawatan_id');
     }
 
+    public function pemeliharaan()
+    {
+        return $this->belongsTo(Pemeliharaan::class, 'pemeliharaan_id');
+    }
+
 }

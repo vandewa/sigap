@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Master;
 
-use App\Models\Kendaraan;
-use App\Models\Pemeliharaan as ModelsPemeliharaan;
+use App\Models\Saldo as ModelsSaldo;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Pemeliharaan extends Component
+class Saldo extends Component
 {
 
     use WithPagination;
@@ -15,25 +14,18 @@ class Pemeliharaan extends Component
     public $idHapus, $edit = false, $idnya;
 
     public $form = [
-        'kendaraan_id' => null,
-        'nota' => null,
-        'tgl' => null,
-        'pengguna_kendaraan' => null,
+        'saldo' => null,
+        'tahun' => null,
     ];
 
     public function mount()
     {
-        $this->ambilKendaraan();
-    }
-
-    public function ambilKendaraan()
-    {
-        return Kendaraan::all()->toArray();
+        //
     }
 
     public function getEdit($a)
     {
-        $this->form = ModelsPemeliharaan::find($a)->only(['kendaraan_id', 'tgl', 'pengguna_kendaraan']);
+        $this->form = ModelsSaldo::find($a)->only(['saldo', 'tahun']);
         $this->idHapus = $a;
         $this->edit = true;
     }
@@ -57,9 +49,7 @@ class Pemeliharaan extends Component
 
     public function store()
     {
-        $this->form['nota'] = gen_nota();
-        ModelsPemeliharaan::create($this->form);
-        $this->reset();
+        ModelsSaldo::create($this->form);
     }
 
     public function delete($id)
@@ -85,7 +75,7 @@ class Pemeliharaan extends Component
 
     public function hapus()
     {
-        ModelsPemeliharaan::destroy($this->idHapus);
+        ModelsSaldo::destroy($this->idHapus);
         $this->js(<<<'JS'
         Swal.fire({
             title: 'Good job!',
@@ -97,7 +87,7 @@ class Pemeliharaan extends Component
 
     public function storeUpdate()
     {
-        ModelsPemeliharaan::find($this->idHapus)->update($this->form);
+        ModelsSaldo::find($this->idHapus)->update($this->form);
         $this->reset();
         $this->edit = false;
     }
@@ -111,14 +101,10 @@ class Pemeliharaan extends Component
 
     public function render()
     {
-        $data = ModelsPemeliharaan::with(['kendaraan'])
-            ->withSum('transaksi', 'jumlah')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $data = ModelsSaldo::orderBy('tahun', 'desc')->paginate(10);
 
-        return view('livewire.pemeliharaan', [
+        return view('livewire.master.saldo', [
             'post' => $data,
-            'listKendaraan' => $this->ambilKendaraan()
         ]);
     }
 }

@@ -27,6 +27,7 @@ class Transaksi extends Component
         'kendaraan_id' => null,
         'tgl' => null,
         'pengguna_kendaraan' => null,
+        'nota' => null,
     ];
 
     public $form2 = [

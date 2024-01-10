@@ -1,16 +1,18 @@
 <?php
 
+use App\Livewire\Keuangan;
+use App\Livewire\Transaksi;
 use App\Livewire\User\Role;
+use App\Livewire\Master\Saldo;
+use App\Livewire\Pemeliharaan;
 use App\Livewire\User\ListRole;
 use App\Livewire\User\Permission;
+use App\Livewire\Master\Kendaraan;
+use App\Livewire\Master\Perawatan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
-use App\Livewire\Master\Kendaraan;
-use App\Livewire\Master\Perawatan;
-use App\Livewire\Pemeliharaan;
-use App\Livewire\Transaksi;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,9 +53,11 @@ Route::middleware([
     Route::group(['prefix' => 'master', 'as' => 'master.'], function () {
         Route::get('kendaraan', Kendaraan::class)->name('kendaraan');
         Route::get('perawatan', Perawatan::class)->name('perawatan');
+        Route::get('saldo', Saldo::class)->name('saldo');
     });
 
     Route::get('pemeliharaan', Pemeliharaan::class)->name('pemeliharaan');
+    Route::get('keuangan', Keuangan::class)->name('keuangan');
     Route::get('transaksi/{id?}', Transaksi::class)->name('transaksi');
 
 
