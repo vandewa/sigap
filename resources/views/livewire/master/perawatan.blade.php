@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <div class="row mb-2">
+        <div class="mb-2 row">
             <div class="col-sm-6">
                 <h1 class="m-0">Perawatan</h1>
             </div>
@@ -29,17 +29,17 @@
                                                     <div class="card-body">
                                                         <div class="col-md-12">
                                                             {{-- <div class="card card-success card-outline"> --}}
-                                                            <form class="form-horizontal mt-2" wire:submit='save'>
+                                                            <form class="mt-2 form-horizontal" wire:submit='save'>
                                                                 <div class="card-body">
                                                                     <div class="row">
                                                                         <div class="col-md-8">
 
-                                                                            <div class="row mb-2">
+                                                                            <div class="mb-2 row">
                                                                                 <label for="inputEmail3"
-                                                                                    class="col-sm-3 col-form-label">Nama
+                                                                                    class="col-sm-2 col-form-label">Nama
                                                                                     <small
                                                                                         class="text-danger">*</small></label>
-                                                                                <div class="col-sm-9">
+                                                                                <div class="col-sm-5">
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         wire:model='form.nama'
@@ -53,7 +53,7 @@
 
                                                                         </div>
                                                                     </div>
-                                                                    <div class="card-footer mt-3">
+                                                                    <div class="mt-3 card-footer">
                                                                         <button type="submit"
                                                                             class="btn btn-info">Simpan</button>
                                                                     </div>
@@ -80,7 +80,7 @@
                                                                         <thead>
                                                                             <th>No</th>
                                                                             <th>Nama</th>
-                                                                            <th>#</th>
+                                                                            <th>Aksi</th>
                                                                         </thead>
                                                                         <tbody>
                                                                             @foreach ($post as $item)
@@ -101,6 +101,9 @@
                                                                                                     title="Edit"><i
                                                                                                         class="fas fa-pencil-alt"></i>
                                                                                                 </button>
+                                                                                                <button type="button" class="btn btn-danger btn-flat btn-sm"
+                                                                                                wire:click="delete('{{ $item->id }}')"><i
+                                                                                                    class="fas fa-trash"></i></button>
                                                                                             </div>
                                                                                         </div>
                                                                                     </td>

@@ -14,7 +14,8 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // DB::table('users')->truncate();
+        DB::table('users')->truncate();
+        
         $data = [
             [
                 'name' => 'Superadmin',
@@ -24,7 +25,7 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($data as $datum) {
-           $a = User::create($datum);
+           User::create($datum);
         }
     }
 }

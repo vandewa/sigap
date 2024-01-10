@@ -15,6 +15,7 @@ class Kendaraan extends Component
 
     public $form = [
         'nopol' => null,
+        'nama' => null,
         'merk' => null,
         'tipe' => null,
     ];
@@ -26,7 +27,7 @@ class Kendaraan extends Component
 
     public function getEdit($a)
     {
-        $this->form = ModelsKendaraan::find($a)->only(['nopol', 'merk', 'tipe']);
+        $this->form = ModelsKendaraan::find($a)->only(['nopol', 'nama','merk', 'tipe']);
         $this->idHapus = $a;
         $this->edit = true;
     }
