@@ -11,4 +11,14 @@ class Pemeliharaan extends Model
 
     public $guarded = [];
 
+    public function kendaraan()
+    {
+        return $this->belongsTo(Kendaraan::class, 'kendaraan_id');
+    }
+
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class);
+    }
+
 }

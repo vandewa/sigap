@@ -9,6 +9,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Livewire\Master\Kendaraan;
 use App\Livewire\Master\Perawatan;
+use App\Livewire\Pemeliharaan;
+use App\Livewire\Transaksi;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,5 +52,9 @@ Route::middleware([
         Route::get('kendaraan', Kendaraan::class)->name('kendaraan');
         Route::get('perawatan', Perawatan::class)->name('perawatan');
     });
+
+    Route::get('pemeliharaan', Pemeliharaan::class)->name('pemeliharaan');
+    Route::get('transaksi/{id?}', Transaksi::class)->name('transaksi');
+
 
 });

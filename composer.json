@@ -16,6 +16,7 @@
         "livewire/livewire": "^3.0",
         "owen-it/laravel-auditing": "^13.5",
         "proengsoft/laravel-jsvalidation": "^4.8",
+        "riskihajar/terbilang": "2.0",
         "santigarcor/laratrust": "^8.2"
     },
     "require-dev": {

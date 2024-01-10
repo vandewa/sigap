@@ -10,12 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('pemeliharaans', function (Blueprint $table) {
-            $table->id();
-            $table->string('kendaraan_id')->nullable();
-            $table->date('tgl')->nullable();
-            $table->string('pengguna_kendaraan')->nullable();
-            $table->timestamps();
+        Schema::table('transaksis', function (Blueprint $table) {
+            $table->bigInteger('jumlah')->nullable()->change();
         });
     }
 
@@ -24,6 +20,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('pemeliharaans');
+        Schema::table('transaksis', function (Blueprint $table) {
+            //
+        });
     }
 };

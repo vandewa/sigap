@@ -65,18 +65,25 @@
                                   Beranda
                               </p>
                           </a>
-                          {{-- <li class="nav-item">
-                          <a href="{{ route('pengajuan') }}"
+                      </li>
+
+                      <li
+                          class="nav-item  
+                      {{ Request::segment(1) == 'pemeliharaan' ? 'active' : '' }}
+                      {{ Request::segment(1) == 'transaksi' ? 'active' : '' }}
+                      ">
+                          <a href="{{ route('pemeliharaan') }}"
                               class="nav-link  
-                              {{ Request::segment(1) == 'pengajuan' ? 'active' : '' }}
-                              {{ Request::segment(1) == 'detail-pengajuan' ? 'active' : '' }}
+                              {{ Request::segment(1) == 'pemeliharaan' ? 'active' : '' }}
+                              {{ Request::segment(1) == 'transaksi' ? 'active' : '' }}
                               ">
-                              <i class="nav-icon fas fa-home"></i>
+                              <i class="nav-icon fas fa-car"></i>
                               <p>
-                                  Pengajuan
+                                  Pemeliharaan
                               </p>
                           </a>
-                      </li> --}}
+                      </li>
+
                       <li
                           class="nav-item
                                 {{ Request::segment(2) == 'list-role' ? 'menu-is-opening menu-open' : '' }}
@@ -132,7 +139,7 @@
                                   {{ Request::segment(2) == 'kendaraan' ? 'active' : '' }}
                                   {{ Request::segment(2) == 'perawatan' ? 'active' : '' }}
                                   ">
-                              <i class="nav-icon fa-solid fa-user"></i>
+                              <i class="nav-icon fa-solid fa-file-lines"></i>
                               <p>
                                   Master
                                   <i class="fas fa-angle-left right"></i>

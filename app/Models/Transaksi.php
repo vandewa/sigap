@@ -11,4 +11,9 @@ class Transaksi extends Model
 
     public $guarded = [];
 
+    public function perawatan()
+    {
+        return $this->belongsTo(Perawatan::class, 'perawatan_id');
+    }
+
 }
