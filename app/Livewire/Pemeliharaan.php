@@ -19,6 +19,7 @@ class Pemeliharaan extends Component
         'nota' => null,
         'tgl' => null,
         'pengguna_kendaraan' => null,
+        'user_id' => null,
     ];
 
     public function mount()
@@ -58,6 +59,7 @@ class Pemeliharaan extends Component
     public function store()
     {
         $this->form['nota'] = gen_nota();
+        $this->form['user_id'] = auth()->user()->id;
         ModelsPemeliharaan::create($this->form);
         $this->reset();
     }
@@ -97,6 +99,7 @@ class Pemeliharaan extends Component
 
     public function storeUpdate()
     {
+        $this->form['user_id'] = auth()->user()->id;
         ModelsPemeliharaan::find($this->idHapus)->update($this->form);
         $this->reset();
         $this->edit = false;

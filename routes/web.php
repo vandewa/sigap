@@ -43,6 +43,7 @@ Route::middleware([
     Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/logout', [DashboardController::class, 'logout'])->name('logout');
+    Route::get('/cetak', [DashboardController::class, 'cetak'])->name('cetak');
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('list-role', ListRole::class)->name('list-role');
@@ -59,6 +60,5 @@ Route::middleware([
     Route::get('pemeliharaan', Pemeliharaan::class)->name('pemeliharaan');
     Route::get('keuangan', Keuangan::class)->name('keuangan');
     Route::get('transaksi/{id?}', Transaksi::class)->name('transaksi');
-
 
 });

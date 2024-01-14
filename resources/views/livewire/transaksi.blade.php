@@ -6,8 +6,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        {{-- <li class="breadcrumb-item active">Master</li> --}}
-                        <li class="breadcrumb-item active"><a href="#">Transaksi</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ route('pemeliharaan') }}">Pemeliharaan</a></li>
+                        <li class="breadcrumb-item active">Transaksi</li>
                     </ol>
                 </div>
             </div>
@@ -111,168 +111,203 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <hr>
+                                                                    @if ($form['user_id'] == auth()->user()->id)
+                                                                        <form wire:submit='save'>
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="mb-2 row">
+                                                                                        <label for="inputEmail3"
+                                                                                            class="col-sm-4 col-form-label">Jenis
+                                                                                            Perawatan
+                                                                                            <small
+                                                                                                class="text-danger">*</small></label>
+                                                                                        <div class="col-sm-8">
+                                                                                            <select class="form-control"
+                                                                                                wire:model.live='form2.perawatan_id'>
+                                                                                                <option value="">
+                                                                                                    Pilih
+                                                                                                    Perawatan</option>
+                                                                                                @foreach ($listPerawatan ?? [] as $item)
+                                                                                                    <option
+                                                                                                        value="{{ $item['id'] }}">
+                                                                                                        {{ $item['nama'] }}
+                                                                                                    </option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                            @error('form2.perawatan_id')
+                                                                                                <span
+                                                                                                    class="form-text text-danger">{{ $message }}</span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="mb-2 row">
+                                                                                        <label for="inputEmail3"
+                                                                                            class="col-sm-4 col-form-label">Kilometer
+                                                                                            Kendaraan
+                                                                                            <small
+                                                                                                class="text-danger">*</small></label>
+                                                                                        <div class="col-sm-8">
+                                                                                            <input type="number"
+                                                                                                class="form-control"
+                                                                                                wire:model='form2.kilometer'>
+                                                                                            @error('form2.kilometer')
+                                                                                                <span
+                                                                                                    class="form-text text-danger">{{ $message }}</span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="mb-2 row">
+                                                                                        <label for="inputEmail3"
+                                                                                            class="col-sm-4 col-form-label">Tempat
+                                                                                            <small
+                                                                                                class="text-danger">*</small></label>
+                                                                                        <div class="col-sm-8">
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                wire:model='form2.tempat'>
+                                                                                            @error('form2.tempat')
+                                                                                                <span
+                                                                                                    class="form-text text-danger">{{ $message }}</span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="mb-2 row">
+                                                                                        <label for="inputEmail3"
+                                                                                            class="col-sm-4 col-form-label">Nama
+                                                                                            Barang / Jasa
+                                                                                            <small
+                                                                                                class="text-danger">*</small></label>
+                                                                                        <div class="col-sm-8">
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                wire:model='form2.nama'>
+                                                                                            @error('form2.nama')
+                                                                                                <span
+                                                                                                    class="form-text text-danger">{{ $message }}</span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="mb-2 row">
+                                                                                        <label for="inputEmail3"
+                                                                                            class="col-sm-4 col-form-label">Volume
+                                                                                            <small
+                                                                                                class="text-danger">*</small></label>
+                                                                                        <div class="col-sm-8">
+                                                                                            <input type="number"
+                                                                                                class="form-control"
+                                                                                                wire:model.live='form2.volume'>
+                                                                                            @error('form2.volume')
+                                                                                                <span
+                                                                                                    class="form-text text-danger">{{ $message }}</span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="mb-2 row">
+                                                                                        <label for="inputEmail3"
+                                                                                            class="col-sm-4 col-form-label">Satuan
+                                                                                            <small
+                                                                                                class="text-danger">*</small>
+                                                                                        </label>
+                                                                                        <div class="col-sm-8">
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                wire:model='form2.satuan'>
+                                                                                            @error('form2.satuan')
+                                                                                                <span
+                                                                                                    class="form-text text-danger">{{ $message }}</span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="mb-2 row">
+                                                                                        <label for="inputEmail3"
+                                                                                            class="col-sm-4 col-form-label">Harga
+                                                                                            Satuan
+                                                                                            <small
+                                                                                                class="text-danger">*</small>
+                                                                                        </label>
+                                                                                        <div class="col-sm-8">
+                                                                                            <input type="number"
+                                                                                                class="form-control"
+                                                                                                wire:model.live='form2.harga_satuan'>
+                                                                                            @error('form2.harga_satuan')
+                                                                                                <span
+                                                                                                    class="form-text text-danger">{{ $message }}</span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+                                                                                    <div class="mb-2 row">
+                                                                                        <label for="inputEmail3"
+                                                                                            class="col-sm-4 col-form-label">Jumlah
+                                                                                            <small
+                                                                                                class="text-danger">*</small>
+                                                                                        </label>
+                                                                                        <div class="col-sm-8">
+                                                                                            <input type="number"
+                                                                                                class="form-control"
+                                                                                                wire:model='form2.jumlah'
+                                                                                                readonly>
+                                                                                            @error('form2.jumlah')
+                                                                                                <span
+                                                                                                    class="form-text text-danger">{{ $message }}</span>
+                                                                                            @enderror
+                                                                                            <span>{{ Terbilang::make($form2['jumlah'] ?? 0, ' rupiah', '') }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="mb-2 row">
+
+                                                                                        <label for="inputEmail3"
+                                                                                            class="col-sm-4 col-form-label">Bukti
+                                                                                            <small
+                                                                                                class="text-danger">*</small></label>
+                                                                                        <div class="col-sm-8">
+                                                                                            <input type="file"
+                                                                                                class="form-control"
+                                                                                                wire:model.live="photo"
+                                                                                                accept="image/png, image/jpeg">
+                                                                                            @error('photo')
+                                                                                                <span
+                                                                                                    class="form-text text-danger">{{ $message }}</span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                        <div class="col-md-12">
+                                                                                            <div
+                                                                                                class="text-center mt-2">
+                                                                                                @if ($form2['path'] ?? '')
+                                                                                                    @if ($photo)
+                                                                                                    @else
+                                                                                                        <img src="{{ asset(str_replace('public', 'storage', $form2['path'])) }}"
+                                                                                                            style="max-width: 500px; max-height:400px;">
+                                                                                                    @endif
+
+                                                                                                @endif
+                                                                                                @if ($photo)
+                                                                                                    <img src="{{ $photo->temporaryUrl() }}"
+                                                                                                        style="max-width: 500px; max-height:400px;">
+                                                                                                @endif
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="mt-3 card-footer">
+                                                                                <button type="submit"
+                                                                                    class="btn btn-info">Simpan</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    @endif
                                                                 </div>
-                                                                <hr>
-                                                                <br>
-                                                                <form wire:submit='save'>
 
-                                                                    <div class="container">
-                                                                        <div class="row">
-                                                                            <div class="col-md-6">
-                                                                                <div class="mb-2 row">
-                                                                                    <label for="inputEmail3"
-                                                                                        class="col-sm-4 col-form-label">Jenis
-                                                                                        Perawatan
-                                                                                        <small
-                                                                                            class="text-danger">*</small></label>
-                                                                                    <div class="col-sm-8">
-                                                                                        <select class="form-control"
-                                                                                            wire:model.defer='form2.perawatan_id'>
-                                                                                            <option value="">Pilih
-                                                                                                Perawatan</option>
-                                                                                            @foreach ($listPerawatan ?? [] as $item)
-                                                                                                <option
-                                                                                                    value="{{ $item['id'] }}">
-                                                                                                    {{ $item['nama'] }}
-                                                                                                </option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                        @error('form2.perawatan_id')
-                                                                                            <span
-                                                                                                class="form-text text-danger">{p{
-                                                                                                $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="mb-2 row">
-                                                                                    <label for="inputEmail3"
-                                                                                        class="col-sm-4 col-form-label">Kilometer
-                                                                                        Kendaraan
-                                                                                        <small
-                                                                                            class="text-danger">*</small></label>
-                                                                                    <div class="col-sm-8">
-                                                                                        <input type="number"
-                                                                                            class="form-control"
-                                                                                            wire:model='form2.kilometer'>
-                                                                                        @error('form2.kilometer')
-                                                                                            <span
-                                                                                                class="form-text text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="mb-2 row">
-                                                                                    <label for="inputEmail3"
-                                                                                        class="col-sm-4 col-form-label">Tempat
-                                                                                        <small
-                                                                                            class="text-danger">*</small></label>
-                                                                                    <div class="col-sm-8">
-                                                                                        <input type="text"
-                                                                                            class="form-control"
-                                                                                            wire:model='form2.tempat'>
-                                                                                        @error('form2.tempat')
-                                                                                            <span
-                                                                                                class="form-text text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="col-md-6">
-
-                                                                                <div class="mb-2 row">
-                                                                                    <label for="inputEmail3"
-                                                                                        class="col-sm-4 col-form-label">Nama
-                                                                                        Barang / Jasa
-                                                                                        <small
-                                                                                            class="text-danger">*</small></label>
-                                                                                    <div class="col-sm-8">
-                                                                                        <input type="text"
-                                                                                            class="form-control"
-                                                                                            wire:model='form2.nama'>
-                                                                                        @error('form2.nama')
-                                                                                            <span
-                                                                                                class="form-text text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="mb-2 row">
-                                                                                    <label for="inputEmail3"
-                                                                                        class="col-sm-4 col-form-label">Volume
-                                                                                        <small
-                                                                                            class="text-danger">*</small></label>
-                                                                                    <div class="col-sm-8">
-                                                                                        <input type="number"
-                                                                                            class="form-control"
-                                                                                            wire:model.live='form2.volume'>
-                                                                                        @error('form2.volume')
-                                                                                            <span
-                                                                                                class="form-text text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="mb-2 row">
-                                                                                    <label for="inputEmail3"
-                                                                                        class="col-sm-4 col-form-label">Satuan
-                                                                                        <small
-                                                                                            class="text-danger">*</small>
-                                                                                    </label>
-                                                                                    <div class="col-sm-8">
-                                                                                        <input type="text"
-                                                                                            class="form-control"
-                                                                                            wire:model='form2.satuan'>
-                                                                                        @error('form2.satuan')
-                                                                                            <span
-                                                                                                class="form-text text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="mb-2 row">
-                                                                                    <label for="inputEmail3"
-                                                                                        class="col-sm-4 col-form-label">Harga
-                                                                                        Satuan
-                                                                                        <small
-                                                                                            class="text-danger">*</small>
-                                                                                    </label>
-                                                                                    <div class="col-sm-8">
-                                                                                        <input type="number"
-                                                                                            class="form-control"
-                                                                                            wire:model.live='form2.harga_satuan'>
-                                                                                        @error('form2.harga_satuan')
-                                                                                            <span
-                                                                                                class="form-text text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="mb-2 row">
-                                                                                    <label for="inputEmail3"
-                                                                                        class="col-sm-4 col-form-label">Jumlah
-                                                                                        <small
-                                                                                            class="text-danger">*</small>
-                                                                                    </label>
-                                                                                    <div class="col-sm-8">
-                                                                                        <input type="number"
-                                                                                            class="form-control"
-                                                                                            wire:model='form2.jumlah'
-                                                                                            readonly>
-                                                                                        @error('form2.jumlah')
-                                                                                            <span
-                                                                                                class="form-text text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                        <span>{{ Terbilang::make($form2['jumlah'] ?? 0, ' rupiah', '') }}</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mt-3 card-footer">
-                                                                        <button type="submit"
-                                                                            class="btn btn-info">Simpan</button>
-                                                                    </div>
-                                                                </form>
                                                                 <br>
 
                                                                 <div class="card card-success card-outline">
@@ -290,7 +325,9 @@
                                                                                     <th>Nama</th>
                                                                                     <th>Tempat</th>
                                                                                     <th>Harga</th>
-                                                                                    <th>Aksi</th>
+                                                                                    @if ($form['user_id'] == auth()->user()->id)
+                                                                                        <th>Aksi</th>
+                                                                                    @endif
                                                                                 </thead>
                                                                                 <tbody>
                                                                                     @foreach ($post as $item)
@@ -305,32 +342,34 @@
                                                                                             </td>
                                                                                             <td> {{ \Laraindo\RupiahFormat::currency($item->jumlah) }}
                                                                                             </td>
-                                                                                            <td>
-                                                                                                <div
-                                                                                                    class="gap-3 table-actions d-flex align-items-center fs-6">
+                                                                                            @if ($form['user_id'] == auth()->user()->id)
+                                                                                                <td>
                                                                                                     <div
-                                                                                                        class="mr-2">
-                                                                                                        <button
-                                                                                                            type="button"
-                                                                                                            wire:click="getEdit('{{ $item->id }}')"
-                                                                                                            class="btn btn-warning btn-flat btn-sm"
-                                                                                                            data-toggle="tooltip"
-                                                                                                            data-placement="left"
-                                                                                                            title="Edit"><i
-                                                                                                                class="fas fa-pencil-alt"></i>
-                                                                                                            Edit
-                                                                                                        </button>
-                                                                                                        <button
-                                                                                                            type="button"
-                                                                                                            class="btn btn-danger btn-flat btn-sm"
-                                                                                                            wire:click="delete('{{ $item->id }}')"><i
-                                                                                                                class="fas fa-trash"></i>
-                                                                                                            Hapus
-                                                                                                        </button>
+                                                                                                        class="gap-3 table-actions d-flex align-items-center fs-6">
+                                                                                                        <div
+                                                                                                            class="mr-2">
+                                                                                                            <button
+                                                                                                                type="button"
+                                                                                                                wire:click="getEdit('{{ $item->id }}')"
+                                                                                                                class="btn btn-warning btn-flat btn-sm"
+                                                                                                                data-toggle="tooltip"
+                                                                                                                data-placement="left"
+                                                                                                                title="Edit"><i
+                                                                                                                    class="fas fa-pencil-alt"></i>
+                                                                                                                Edit
+                                                                                                            </button>
+                                                                                                            <button
+                                                                                                                type="button"
+                                                                                                                class="btn btn-danger btn-flat btn-sm"
+                                                                                                                wire:click="delete('{{ $item->id }}')"><i
+                                                                                                                    class="fas fa-trash"></i>
+                                                                                                                Hapus
+                                                                                                            </button>
 
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                </div>
-                                                                                            </td>
+                                                                                                </td>
+                                                                                            @endif
                                                                                         </tr>
                                                                                     @endforeach
                                                                                 </tbody>

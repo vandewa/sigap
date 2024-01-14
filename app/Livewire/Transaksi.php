@@ -8,12 +8,18 @@ use App\Models\Perawatan;
 use Livewire\Attributes\On;
 use App\Models\Pemeliharaan;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+use Livewire\Attributes\Validate;
 use App\Models\Transaksi as ModelsTransaksi;
 
 class Transaksi extends Component
 {
 
     use WithPagination;
+    use WithFileUploads;
+
+    #[Validate('image|max:3000')]
+    public $photo;
 
     public $idHapus, $edit = false, $idnya;
 
@@ -40,6 +46,7 @@ class Transaksi extends Component
         'harga_satuan' => null,
         'jumlah' => null,
         'tempat' => null,
+        'path' => null,
     ];
 
     public function mount($id = '')
@@ -63,7 +70,7 @@ class Transaksi extends Component
 
     public function getEdit($a)
     {
-        $this->form2 = ModelsTransaksi::find($a)->only(['perawatan_id', 'kilometer', 'nama', 'volume', 'satuan', 'harga_satuan', 'jumlah', 'tempat']);
+        $this->form2 = ModelsTransaksi::find($a)->only(['perawatan_id', 'kilometer', 'nama', 'volume', 'satuan', 'harga_satuan', 'jumlah', 'tempat', 'path']);
         $this->idHapus = $a;
         $this->edit = true;
     }
@@ -86,7 +93,10 @@ class Transaksi extends Component
             'harga_satuan' => null,
             'jumlah' => null,
             'tempat' => null,
+            'path' => null,
         ];
+
+        $this->photo = null;
 
         $this->js(<<<'JS'
         Swal.fire({
@@ -99,6 +109,14 @@ class Transaksi extends Component
 
     public function store()
     {
+        $this->validate([
+            'form2.perawatan_id' => 'required'
+        ]);
+
+        if ($this->photo) {
+            $foto = $this->photo->store('public/photos');
+        }
+        $this->form2['path'] = $foto ?? null;
         $this->form2['pemeliharaan_id'] = $this->idnya;
         ModelsTransaksi::create($this->form2);
     }
@@ -138,6 +156,14 @@ class Transaksi extends Component
 
     public function storeUpdate()
     {
+        $this->validate([
+            'form2.perawatan_id' => 'required'
+        ]);
+
+        if ($this->photo) {
+            $foto = $this->photo->store('public/photos');
+            $this->form2['path'] = $foto;
+        }
         ModelsTransaksi::find($this->idHapus)->update($this->form2);
         $this->edit = false;
     }
@@ -174,7 +200,6 @@ class Transaksi extends Component
     {
         $data = ModelsTransaksi::with(['perawatan'])->where('pemeliharaan_id', $this->idnya)->paginate(15);
         $jumlah = ModelsTransaksi::where('pemeliharaan_id', $this->idnya)->sum('jumlah');
-
 
         return view('livewire.transaksi', [
             'post' => $data,

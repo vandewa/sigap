@@ -21,7 +21,7 @@ class Keuangan extends Component
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        $saldo = Saldo::where('tahun', date('Y'))->first()->saldo;
+        $saldo = Saldo::where('tahun', date('Y'))->first()->saldo ?? "0";
 
         $pengeluaran = Transaksi::whereHas('pemeliharaan', function ($a) {
             $a->whereYear('tgl', date('Y'));

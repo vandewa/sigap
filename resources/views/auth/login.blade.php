@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="Sipeda">
-    <meta name="author" content="Dinas Sosial">
-    <meta name="keyword" content="Sipeda">
+    <meta name="description" content="Sigap">
+    <meta name="author" content="BPBD>
+    <meta name="keyword" content="Sigap">
     <link rel="icon" href="{{ asset('snacked/ltr/assets/images/favicon/favicon-32x32.png') }}" type="image/png" />
-    <title>Login E-RM</title>
+    <title>Login SIGAP</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
                     <img src="{{ asset('pemda.png') }}" style="width: 120px;">
                     <h2 class="heading-section">
                         <span
-                            style="margin-left: 10px; font-weight: bold; font-family: 'Teko', sans-serif; color: #ffffff; font-size: 40pt">SIPEDA
+                            style="margin-left: 10px; font-weight: bold; font-family: 'Teko', sans-serif; color: #ffffff; font-size: 40pt">SIGAP
                         </span>
                     </h2>
                 </div>
@@ -74,8 +74,8 @@
         </div>
         <div class="pt-3 container-fluid client bg-transparent">
             <div class="container text-center">
-                <span class="small float-center" style="font-size: 10px; color:#fff;"><b>&copy;2023
-                        <?php if (date('Y') == 2023) {
+                <span class="small float-center" style="font-size: 10px; color:#fff;"><b>&copy;2024
+                        <?php if (date('Y') == 2024) {
                             echo '';
                         } else {
                             echo '- ' . date('Y');
