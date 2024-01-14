@@ -15,15 +15,12 @@ return [
         'superadmin' => [
             'users' => 'c,r,u,d',
         ],
-        'dinsos' => [
+        'bpbd' => [
             'users' => 'c,r,u,d',
         ],
-        'kecamatan' => [
+        'damkar' => [
             'users' => 'c,r,u,d',
         ],
-        'desa' => [
-            'users' => 'c,r,u,d',
-        ]
     ],
 
     'permissions_map' => [

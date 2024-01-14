@@ -2,12 +2,12 @@
 
 namespace App\Livewire;
 
-use App\Models\Kendaraan;
-use App\Models\Pemeliharaan as ModelsPemeliharaan;
 use Livewire\Component;
+use App\Models\Kendaraan;
 use Livewire\WithPagination;
+use App\Models\Kegiatan as ModelsKegiatan;
 
-class Pemeliharaan extends Component
+class Kegiatan extends Component
 {
 
     use WithPagination;
@@ -15,11 +15,12 @@ class Pemeliharaan extends Component
     public $idHapus, $edit = false, $idnya;
 
     public $form = [
-        'kendaraan_id' => null,
-        'nota' => null,
         'tgl' => null,
-        'pengguna_kendaraan' => null,
-        'user_id' => null,
+        'nama' => null,
+        'lokasi' => null,
+        'kendaraan_id' => null,
+        'anggaran' => null,
+        'keterangan' => null,
     ];
 
     public function mount()
@@ -34,7 +35,7 @@ class Pemeliharaan extends Component
 
     public function getEdit($a)
     {
-        $this->form = ModelsPemeliharaan::find($a)->only(['kendaraan_id', 'tgl', 'pengguna_kendaraan']);
+        $this->form = ModelsKegiatan::find($a)->toArray();
         $this->idHapus = $a;
         $this->edit = true;
     }
@@ -58,9 +59,7 @@ class Pemeliharaan extends Component
 
     public function store()
     {
-        $this->form['nota'] = gen_nota();
-        $this->form['user_id'] = auth()->user()->id;
-        ModelsPemeliharaan::create($this->form);
+        ModelsKegiatan::create($this->form);
         $this->reset();
     }
 
@@ -87,7 +86,7 @@ class Pemeliharaan extends Component
 
     public function hapus()
     {
-        ModelsPemeliharaan::destroy($this->idHapus);
+        ModelsKegiatan::destroy($this->idHapus);
         $this->js(<<<'JS'
         Swal.fire({
             title: 'Good job!',
@@ -99,8 +98,7 @@ class Pemeliharaan extends Component
 
     public function storeUpdate()
     {
-        $this->form['user_id'] = auth()->user()->id;
-        ModelsPemeliharaan::find($this->idHapus)->update($this->form);
+        ModelsKegiatan::find($this->idHapus)->update($this->form);
         $this->reset();
         $this->edit = false;
     }
@@ -114,21 +112,9 @@ class Pemeliharaan extends Component
 
     public function render()
     {
-        if (auth()->user()->hasRole('superadmin')) {
-            $data = ModelsPemeliharaan::with(['kendaraan'])
-                ->withSum('transaksi', 'jumlah')
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
-        } else {
-            $data = ModelsPemeliharaan::with(['kendaraan'])
-                ->withSum('transaksi', 'jumlah')
-                ->where('user_id', auth()->user()->id)
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
-        }
+        $data = ModelsKegiatan::with(['kendaraan'])->paginate(10);
 
-
-        return view('livewire.pemeliharaan', [
+        return view('livewire.kegiatan', [
             'post' => $data,
             'listKendaraan' => $this->ambilKendaraan()
         ]);

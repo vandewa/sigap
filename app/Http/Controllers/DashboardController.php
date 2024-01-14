@@ -16,19 +16,20 @@ class DashboardController extends Controller
         return view('dashboard.index');
     }
 
-    public function cetak()
+    public function cetak(Request $request)
     {
-        $data = Pemeliharaan::whereYear('tgl', date('Y'))
+        $data = Pemeliharaan::whereYear('tgl', $request->tahun)
             ->withSum('transaksi', 'jumlah')
             ->get();
-        $saldo = Saldo::where('tahun', date('Y'))->first()->saldo;
+
+        $saldo = Saldo::whereYear('tahun', $request->tahun)->first();
 
         $path = public_path('/template/laporan_keuangan.docx');
-        $pathSave = storage_path('app/public/' . 'Laporan Keuangan ' . date('Y') . '.docx');
+        $pathSave = storage_path('app/public/' . 'Laporan Keuangan ' . $request->tahun . '.docx');
         $templateProcessor = new TemplateProcessor($path);
         $templateProcessor->setValues([
             'nomor' => 1,
-            'ket' => 'Tahun Anggaran ' . date('Y'),
+            'ket' => 'Tahun Anggaran ' . $request->tahun,
             'masuk' => \Laraindo\RupiahFormat::currency($saldo ?? 0),
             'keluar' => '-',
             'sisa' => \Laraindo\RupiahFormat::currency($saldo ?? 0),

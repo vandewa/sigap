@@ -27,60 +27,115 @@
                                                     role="tabpanel" aria-labelledby="custom-tabs-six-riwayat-rm-tab">
                                                     <div class="card-body">
                                                         <div class="col-md-12">
-                                                            <div class="card-body">
-                                                                <div class="row">
-                                                                    <div class="col-md-4">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="mb-2">
-                                                                                    <span class="text-center">Saldo
-                                                                                        Awal</span><br>
-                                                                                </div>
-
-                                                                                <p class="form-control">
-                                                                                    {{ Laraindo\RupiahFormat::currency($saldo) }}
-                                                                                </p>
-                                                                            </div>
+                                                            <form action="{{ route('cetak') }}" method="post">
+                                                                @csrf
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-2 mb-3">
+                                                                            <select class="form-control"
+                                                                                wire:model.live="tahun" name="tahun">
+                                                                                @foreach ($listTahun ?? [] as $item)
+                                                                                    <option
+                                                                                        value="{{ $item['tahun'] }}">
+                                                                                        {{ $item['tahun'] }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-2 mb-3">
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary"><i
+                                                                                    class="fas fa-print mr-2"></i>Cetak
+                                                                                Laporan</button>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="mb-2">
-                                                                                    <span
-                                                                                        class="text-center">Pengeluaran</span><br>
-                                                                                </div>
+                                                                    <div class="row">
 
-                                                                                <p class="form-control">
-                                                                                    {{ Laraindo\RupiahFormat::currency($pengeluaran) }}
-                                                                                </p>
+                                                                        <div class="col-md-4">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-2">
+                                                                                        <span class="text-center">Saldo
+                                                                                            Awal</span><br>
+                                                                                    </div>
+
+                                                                                    <p class="form-control">
+                                                                                        {{ Laraindo\RupiahFormat::currency($saldo) }}
+                                                                                    </p>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="mb-2">
-                                                                                    <span class="text-center">Sisa
-                                                                                        Saldo</span><br>
-                                                                                </div>
+                                                                        <div class="col-md-4">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-2">
+                                                                                        <span
+                                                                                            class="text-center">Pengeluaran</span><br>
+                                                                                    </div>
 
-                                                                                <p class="form-control">
-                                                                                    {{ Laraindo\RupiahFormat::currency($sisa) }}
-                                                                                </p>
+                                                                                    <p class="form-control">
+                                                                                        {{ Laraindo\RupiahFormat::currency($pengeluaran) }}
+                                                                                    </p>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <a href="{{ route('cetak') }}"
-                                                                            class="btn btn-primary btn-flat btn-sm"
-                                                                            target="_blank"><i
-                                                                                class="fas fa-print mr-2"></i>Cetak
-                                                                            Laporan
-                                                                        </a>
+                                                                        <div class="col-md-4">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-2">
+                                                                                        <span class="text-center">Sisa
+                                                                                            Saldo</span><br>
+                                                                                    </div>
+
+                                                                                    <p class="form-control">
+                                                                                        {{ Laraindo\RupiahFormat::currency($sisa) }}
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        {{-- <div class="col-md-2">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-2">
+                                                                                        <span
+                                                                                            class="text-center">Dari</span><br>
+                                                                                    </div>
+                                                                                    <input type="date" name="dari"
+                                                                                        id=""
+                                                                                        class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-2">
+                                                                                        <span
+                                                                                            class="text-center">Sampai</span><br>
+                                                                                    </div>
+                                                                                    <input type="date" name="sampai"
+                                                                                        id=""
+                                                                                        class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-2">
+                                                                                        <span
+                                                                                            class="text-center"></span><br>
+                                                                                    </div>
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-primary"><i
+                                                                                            class="fas fa-print mr-2"></i>Cetak
+                                                                                        Laporan</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> --}}
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </form>
                                                             <br>
 
                                                             <div class="card card-success card-outline">
