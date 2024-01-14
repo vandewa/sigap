@@ -76,7 +76,7 @@
                                                                             class="btn btn-primary btn-flat btn-sm"
                                                                             target="_blank"><i
                                                                                 class="fas fa-print mr-2"></i>Cetak
-                                                                            Transaksi
+                                                                            Laporan
                                                                         </a>
                                                                     </div>
                                                                 </div>
