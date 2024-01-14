@@ -45,8 +45,7 @@
               <!-- Sidebar user panel (optional) -->
               <div class="pb-3 mt-3 mb-3 user-panel d-flex">
                   <div class="image">
-                      <img src="{{ asset('AdminLTE/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                          alt="User Image">
+                      <img src="{{ asset('soul.png') }}" class="img-circle elevation-2" alt="User Image">
                   </div>
                   <div class="info">
                       <a href="#" class="d-block">{{ auth()->user()->name }}</a>
@@ -62,7 +61,7 @@
                               class="nav-link  {{ Request::segment(1) == 'dashboard' ? 'active' : '' }}{{ Request::segment(1) == '' ? 'active' : '' }}">
                               <i class="nav-icon fas fa-home"></i>
                               <p>
-                                  Beranda
+                                  Dashboard
                               </p>
                           </a>
                       </li>
