@@ -115,7 +115,7 @@
                                                                                     <small
                                                                                         class="text-danger">*</small></label>
                                                                                 <div class="col-sm-9">
-                                                                                    <input type="text"
+                                                                                    <input type="number"
                                                                                         class="form-control"
                                                                                         wire:model='form.anggaran'
                                                                                         placeholder="Anggaran">
