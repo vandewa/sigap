@@ -12,16 +12,20 @@ class Kendaraan extends Model
     public $guarded = [];
 
     protected $primaryKey = 'nopol';
-    // protected $primaryKey = 'com_cd';
     public $incrementing = false;
     protected $keyType = 'string';
+
+    public function pemeliharaan()
+    {
+      return $this->hasMany(Pemeliharaan::class, 'kendaraan_id');
+    }
 
     public function scopeCari($filter, $value)
     {
       if ($value) {
         return $this->where('nopol', 'like', "%$value%");
       }
-
     }
+    
 
 }
