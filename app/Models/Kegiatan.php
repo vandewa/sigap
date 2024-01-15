@@ -15,4 +15,17 @@ class Kegiatan extends Model
     {
         return $this->belongsTo(Kendaraan::class, 'kendaraan_id');
     }
+
+    public function scopeCari($filter, $value)
+    {
+      if ($value) {
+        return $this->where('nama', 'like', "%$value%")
+                    ->orWhere('kendaraan_id', 'like', "%$value%")
+                    ->orWhere('lokasi', 'like', "%$value%")
+                    ->orWhere('anggaran', 'like', "%$value%")
+                    ->orWhere('keterangan', 'like', "%$value%")
+                    ;
+      }
+    }
+
 }

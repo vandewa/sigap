@@ -16,4 +16,12 @@ class Kendaraan extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+    public function scopeCari($filter, $value)
+    {
+      if ($value) {
+        return $this->where('nopol', 'like', "%$value%");
+      }
+
+    }
+
 }

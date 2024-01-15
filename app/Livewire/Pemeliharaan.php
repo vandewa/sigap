@@ -12,7 +12,7 @@ class Pemeliharaan extends Component
 
     use WithPagination;
 
-    public $idHapus, $edit = false, $idnya;
+    public $idHapus, $edit = false, $idnya, $cari;
 
     public $form = [
         'kendaraan_id' => null,
@@ -117,11 +117,13 @@ class Pemeliharaan extends Component
         if (auth()->user()->hasRole('superadmin')) {
             $data = ModelsPemeliharaan::with(['kendaraan'])
                 ->withSum('transaksi', 'jumlah')
+                ->cari($this->cari)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         } else {
             $data = ModelsPemeliharaan::with(['kendaraan'])
                 ->withSum('transaksi', 'jumlah')
+                ->cari($this->cari)
                 ->where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);

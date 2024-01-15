@@ -12,7 +12,7 @@ class Kegiatan extends Component
 
     use WithPagination;
 
-    public $idHapus, $edit = false, $idnya;
+    public $idHapus, $edit = false, $idnya, $cari;
 
     public $form = [
         'tgl' => null,
@@ -112,7 +112,7 @@ class Kegiatan extends Component
 
     public function render()
     {
-        $data = ModelsKegiatan::with(['kendaraan'])->paginate(10);
+        $data = ModelsKegiatan::with(['kendaraan'])->cari($this->cari)->paginate(10);
 
         return view('livewire.kegiatan', [
             'post' => $data,

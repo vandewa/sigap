@@ -21,4 +21,12 @@ class Pemeliharaan extends Model
         return $this->hasMany(Transaksi::class);
     }
 
+    public function scopeCari($filter, $value)
+    {
+      if ($value) {
+        return $this->where('nota', 'like', "%$value%");
+      }
+
+    }
+
 }

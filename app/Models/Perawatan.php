@@ -11,4 +11,12 @@ class Perawatan extends Model
 
     public $guarded = [];
 
+    public function scopeCari($filter, $value)
+    {
+      if ($value) {
+        return $this->where('nama', 'like', "%$value%");
+      }
+
+    }
+
 }

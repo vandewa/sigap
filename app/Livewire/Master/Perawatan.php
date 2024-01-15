@@ -11,7 +11,7 @@ class Perawatan extends Component
 
     use WithPagination;
 
-    public $idHapus, $edit = false, $idnya;
+    public $idHapus, $edit = false, $idnya, $cari;
 
     public $form = [
         'nama' => null,
@@ -100,7 +100,7 @@ class Perawatan extends Component
 
     public function render()
     {
-        $data = ModelsPerawatan::paginate(10);
+        $data = ModelsPerawatan::cari($this->cari)->paginate(10);
 
         return view('livewire.master.perawatan', [
             'post' => $data,

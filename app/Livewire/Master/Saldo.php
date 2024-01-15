@@ -11,7 +11,7 @@ class Saldo extends Component
 
     use WithPagination;
 
-    public $idHapus, $edit = false, $idnya;
+    public $idHapus, $edit = false, $idnya, $cari;
 
     public $form = [
         'saldo' => null,
@@ -101,7 +101,7 @@ class Saldo extends Component
 
     public function render()
     {
-        $data = ModelsSaldo::orderBy('tahun', 'desc')->paginate(10);
+        $data = ModelsSaldo::cari($this->cari)->orderBy('tahun', 'desc')->paginate(10);
 
         return view('livewire.master.saldo', [
             'post' => $data,

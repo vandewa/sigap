@@ -15,7 +15,7 @@ class Keuangan extends Component
 {
     use WithPagination;
 
-    public $tahun, $saldo, $pengeluaran, $sisa;
+    public $tahun, $saldo, $pengeluaran, $sisa, $cari;
 
     public function mount()
     {
@@ -50,6 +50,7 @@ class Keuangan extends Component
     public function render()
     {
         $data = ModelsPemeliharaan::with(['kendaraan'])
+            ->cari($this->cari)
             ->withSum('transaksi', 'jumlah')
             ->orderBy('created_at', 'desc')
             ->paginate(10);

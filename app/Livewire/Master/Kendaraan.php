@@ -11,7 +11,7 @@ class Kendaraan extends Component
 
     use WithPagination;
 
-    public $idHapus, $edit = false, $idnya;
+    public $idHapus, $edit = false, $idnya, $cari;
 
     public $form = [
         'nopol' => null,
@@ -103,7 +103,7 @@ class Kendaraan extends Component
 
     public function render()
     {
-        $data = ModelsKendaraan::paginate(10);
+        $data = ModelsKendaraan::cari($this->cari)->paginate(10);
 
         return view('livewire.master.kendaraan', [
             'post' => $data,

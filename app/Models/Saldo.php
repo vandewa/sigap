@@ -10,5 +10,13 @@ class Saldo extends Model
     use HasFactory;
 
     public $guarded = [];
+    
+    public function scopeCari($filter, $value)
+    {
+      if ($value) {
+        return $this->where('tahun', 'like', "%$value%");
+      }
+
+    }
 
 }
