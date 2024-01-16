@@ -15,28 +15,17 @@ class Dashboard extends Component
 
     public function mount()
     {
-        $this->data = Kendaraan::withCount('pemeliharaan')
-        ->get();
-
-        // dd($this->data);
+        // 
     }
 
     public function updated($property)
     {
-        if ($property == 'startDate' && $property == 'endDate' ) {
-            dd('asu');
-        }
+        // 
     }
 
 
     public function render()
     {
-        // $this->data = Kendaraan::whereHas('pemeliharaan', function ($a) {
-        //     $a->whereBetween('tgl',[$this->startDate, $this->endDate]);
-        // })
-        // ->withCount('pemeliharaan')
-        // ->get();
-
         return view('livewire.dashboard');
     }
 }

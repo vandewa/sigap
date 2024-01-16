@@ -4,19 +4,27 @@ namespace App\Livewire\Chart;
 
 use Livewire\Component;
 use App\Models\Kendaraan;
-use App\Livewire\Chart\KegiatanChart;
 use Asantibanez\LivewireCharts\Facades\LivewireCharts;
+use Livewire\Attributes\On;
 
-class KendaraanChart extends Component
+class KegiatanChart extends Component
 {
+
+
     public $startDate, $endDate;
+    #[On('jmbt')]
+    public function jmbt($start, $end)
+    {
+        $this->startDate = $start;
+        $this->endDate = $end;
+    }
+
     public function render()
     {
 
         $jingan = Kendaraan::withCount([
             'pemeliharaan' => function ($a) {
                 if ($this->startDate && $this->endDate) {
-                    $this->dispatch('jmbt', start: $this->startDate, end: $this->endDate)->to(KegiatanChart::class);
                     $a->where('tgl', '>=', $this->startDate)->where('tgl', '<=', $this->endDate);
                 }
 
@@ -36,7 +44,7 @@ class KendaraanChart extends Component
                     return $columnChartModel->addColumn($type, $value, '#017bfe');
                 },
                 LivewireCharts::columnChartModel()
-                    ->setTitle('Pemeliharaan Per Tahun')
+                    ->setTitle('Register Siswa Bulanan Tahun ')
                     ->setAnimated(true)
                     ->withOnColumnClickEventName('onColumnClick')
                     ->setLegendVisibility(false)
@@ -48,7 +56,7 @@ class KendaraanChart extends Component
             );
 
 
-        return view('livewire.chart.kendaraan-chart', [
+        return view('livewire.chart.kegiatan-chart', [
             'columnChartModel' => $columnChartModel,
         ]);
     }
