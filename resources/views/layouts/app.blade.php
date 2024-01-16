@@ -41,6 +41,7 @@
 
     @vite([])
 
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -128,6 +129,7 @@
     <script src="https://kit.fontawesome.com/bb9305debb.js" crossorigin="anonymous"></script>
     @stack('js')
     @livewireScripts
+    @livewireChartsScripts
 
     <script>
         window.addEventListener('toast', event => {

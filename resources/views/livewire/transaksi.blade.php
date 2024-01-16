@@ -234,7 +234,7 @@
                                                                                         <div class="col-sm-8">
                                                                                             <input type="number"
                                                                                                 class="form-control"
-                                                                                                wire:model.live='form2.harga_satuan'>
+                                                                                                wire:model.live.debounce.1s='form2.harga_satuan'>
                                                                                             @error('form2.harga_satuan')
                                                                                                 <span
                                                                                                     class="form-text text-danger">{{ $message }}</span>
@@ -280,7 +280,7 @@
                                                                                         </div>
                                                                                         <div class="col-md-12">
                                                                                             <div
-                                                                                                class="text-center mt-2">
+                                                                                                class="mt-2 text-center">
                                                                                                 @if ($form2['path'] ?? '')
                                                                                                     @if ($photo)
                                                                                                     @else

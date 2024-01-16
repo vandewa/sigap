@@ -1,4 +1,4 @@
-<div>
+{{-- <div>
     <div class="container">
         <div class="row">
           <div class="col-md-2">
@@ -56,4 +56,8 @@
       }
     });
   </script>
-@endpush
+@endpush --}}
+
+<div>
+  <livewire:chart.kendaraan-chart>
+</div>
