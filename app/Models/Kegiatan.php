@@ -15,6 +15,7 @@ class Kegiatan extends Model
     {
         return $this->belongsTo(Kendaraan::class, 'kendaraan_id');
     }
+    
 
     public function scopeCari($filter, $value)
     {

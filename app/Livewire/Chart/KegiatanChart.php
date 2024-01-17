@@ -21,16 +21,14 @@ class KegiatanChart extends Component
 
     public function render()
     {
-
         $jingan = Kendaraan::withCount([
-            'pemeliharaan' => function ($a) {
+            'kegiatan' => function ($a) {
                 if ($this->startDate && $this->endDate) {
                     $a->where('tgl', '>=', $this->startDate)->where('tgl', '<=', $this->endDate);
                 }
 
             }
-        ])
-            ->get();
+        ])->get();
 
 
         // dd($jingan);
@@ -38,13 +36,13 @@ class KegiatanChart extends Component
             ->reduce(
                 function ($columnChartModel, $data) {
                     $type = $data->nopol;
-                    $value = $data->pemeliharaan_count;
+                    $value = $data->kegiatan_count;
 
 
                     return $columnChartModel->addColumn($type, $value, '#017bfe');
                 },
                 LivewireCharts::columnChartModel()
-                    ->setTitle('Register Siswa Bulanan Tahun ')
+                    ->setTitle('Kegiatan Per Tahun ')
                     ->setAnimated(true)
                     ->withOnColumnClickEventName('onColumnClick')
                     ->setLegendVisibility(false)
