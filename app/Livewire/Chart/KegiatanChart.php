@@ -42,7 +42,7 @@ class KegiatanChart extends Component
                     return $columnChartModel->addColumn($type, $value, '#017bfe');
                 },
                 LivewireCharts::columnChartModel()
-                    ->setTitle('Kegiatan Per Tahun ')
+                    ->setTitle('Jumlah Kegiatan')
                     ->setAnimated(true)
                     ->withOnColumnClickEventName('onColumnClick')
                     ->setLegendVisibility(false)

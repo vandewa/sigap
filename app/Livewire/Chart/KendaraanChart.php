@@ -36,7 +36,7 @@ class KendaraanChart extends Component
                     return $columnChartModel->addColumn($type, $value, '#017bfe');
                 },
                 LivewireCharts::columnChartModel()
-                    ->setTitle('Pemeliharaan Per Tahun')
+                    ->setTitle('Jumlah Pemeliharaan')
                     ->setAnimated(true)
                     ->withOnColumnClickEventName('onColumnClick')
                     ->setLegendVisibility(false)
