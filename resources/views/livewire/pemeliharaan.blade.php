@@ -43,7 +43,7 @@
                                                                                             class="text-danger">*</small></label>
                                                                                     <div class="col-sm-5">
                                                                                         <select class="form-control"
-                                                                                            wire:model.defer='form.kendaraan_id'>
+                                                                                            wire:model.live='form.kendaraan_id'>
                                                                                             <option value="">Pilih
                                                                                                 Kendaraan</option>
                                                                                             @foreach ($listKendaraan ?? [] as $item)
@@ -59,6 +59,27 @@
                                                                                         @enderror
                                                                                     </div>
                                                                                 </div>
+
+                                                                                @if ($keterangan)
+                                                                                    <div class="mb-2 row">
+                                                                                        <label for="inputEmail3"
+                                                                                            class="col-sm-4 col-form-label">Keterangan
+                                                                                            (Nopol)
+                                                                                            <small
+                                                                                                class="text-danger">*</small></label>
+                                                                                        <div class="col-sm-5">
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                wire:model='form.keterangan_nopol'
+                                                                                                placeholder="Nomor Polisi">
+                                                                                            @error('form.keterangan_nopol')
+                                                                                                <span
+                                                                                                    class="form-text text-danger">{{ $message }}</span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endif
+
 
                                                                                 <div class="mb-2 row">
                                                                                     <label for="inputEmail3"

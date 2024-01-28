@@ -34,10 +34,10 @@
 
                                                                             <div class="mb-2 row">
                                                                                 <label for="inputEmail3"
-                                                                                    class="col-sm-3 col-form-label">Tanggal
+                                                                                    class="col-sm-4 col-form-label">Tanggal
                                                                                     <small
                                                                                         class="text-danger">*</small></label>
-                                                                                <div class="col-sm-9">
+                                                                                <div class="col-sm-8">
                                                                                     <input type="date"
                                                                                         class="form-control"
                                                                                         wire:model='form.tgl'>
@@ -50,11 +50,11 @@
 
                                                                             <div class="mb-2 row">
                                                                                 <label for="inputEmail3"
-                                                                                    class="col-sm-3 col-form-label">Nama
+                                                                                    class="col-sm-4 col-form-label">Nama
                                                                                     Kegiatan
                                                                                     <small
                                                                                         class="text-danger">*</small></label>
-                                                                                <div class="col-sm-9">
+                                                                                <div class="col-sm-8">
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         wire:model='form.nama'
@@ -68,10 +68,10 @@
 
                                                                             <div class="mb-2 row">
                                                                                 <label for="inputEmail3"
-                                                                                    class="col-sm-3 col-form-label">Lokasi
+                                                                                    class="col-sm-4 col-form-label">Lokasi
                                                                                     <small
                                                                                         class="text-danger">*</small></label>
-                                                                                <div class="col-sm-9">
+                                                                                <div class="col-sm-8">
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         wire:model='form.lokasi'
@@ -85,10 +85,10 @@
 
                                                                             <div class="mb-2 row">
                                                                                 <label for="inputEmail3"
-                                                                                    class="col-sm-3 col-form-label">Kendaraan
+                                                                                    class="col-sm-4 col-form-label">Kendaraan
                                                                                     <small
                                                                                         class="text-danger">*</small></label>
-                                                                                <div class="col-sm-9">
+                                                                                <div class="col-sm-8">
                                                                                     <select class="form-control"
                                                                                         wire:model.defer='form.kendaraan_id'>
                                                                                         <option value="">Pilih
@@ -110,11 +110,11 @@
                                                                         <div class="col-md-6">
                                                                             <div class="mb-2 row">
                                                                                 <label for="inputEmail3"
-                                                                                    class="col-sm-3 col-form-label">Anggaran
+                                                                                    class="col-sm-4 col-form-label">Anggaran
                                                                                     (BBM/Operasional)
                                                                                     <small
                                                                                         class="text-danger">*</small></label>
-                                                                                <div class="col-sm-9">
+                                                                                <div class="col-sm-8">
                                                                                     <input type="number"
                                                                                         class="form-control"
                                                                                         wire:model='form.anggaran'
@@ -127,10 +127,10 @@
                                                                             </div>
                                                                             <div class="mb-2 row">
                                                                                 <label for="inputEmail3"
-                                                                                    class="col-sm-3 col-form-label">Keterangan
+                                                                                    class="col-sm-4 col-form-label">Keterangan
                                                                                     <small
                                                                                         class="text-danger">*</small></label>
-                                                                                <div class="col-sm-9">
+                                                                                <div class="col-sm-8">
                                                                                     <textarea class="form-control" rows="2" wire:model="form.keterangan"></textarea>
                                                                                     @error('form.keterangan')
                                                                                         <span

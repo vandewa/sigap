@@ -74,6 +74,26 @@
                                                                                     @enderror
                                                                                 </div>
                                                                             </div>
+                                                                            @if ($form['kendaraan_id'] == 'Lainnya')
+                                                                                <div class="mb-2 row">
+                                                                                    <label for="inputEmail3"
+                                                                                        class="col-sm-4 col-form-label">Keterangan
+                                                                                        (Nopol)
+                                                                                        <small
+                                                                                            class="text-danger">*</small></label>
+                                                                                    <div class="col-sm-8">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            wire:model='form.keterangan_nopol'
+                                                                                            placeholder="Nomor Polisi"
+                                                                                            disabled>
+                                                                                        @error('form.keterangan_nopol')
+                                                                                            <span
+                                                                                                class="form-text text-danger">{{ $message }}</span>
+                                                                                        @enderror
+                                                                                    </div>
+                                                                                </div>
+                                                                            @endif
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="mb-2 row">

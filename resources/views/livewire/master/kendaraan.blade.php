@@ -32,14 +32,13 @@
                                                             <form class="mt-2 form-horizontal" wire:submit='save'>
                                                                 <div class="card-body">
                                                                     <div class="row">
-                                                                        <div class="col-md-8">
-
+                                                                        <div class="col-md-6">
                                                                             <div class="mb-2 row">
                                                                                 <label for="inputEmail3"
                                                                                     class="col-sm-2 col-form-label">Nopol
                                                                                     <small
                                                                                         class="text-danger">*</small></label>
-                                                                                <div class="col-sm-5">
+                                                                                <div class="col-sm-10">
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         wire:model='form.nopol'
@@ -56,7 +55,7 @@
                                                                                     class="col-sm-2 col-form-label">Nama
                                                                                     <small
                                                                                         class="text-danger">*</small></label>
-                                                                                <div class="col-sm-5">
+                                                                                <div class="col-sm-10">
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         wire:model='form.nama'
@@ -67,13 +66,14 @@
                                                                                     @enderror
                                                                                 </div>
                                                                             </div>
-                                                                            
+                                                                        </div>
+                                                                        <div class="col-md-6">
                                                                             <div class="mb-2 row">
                                                                                 <label for="inputEmail3"
                                                                                     class="col-sm-2 col-form-label">Merk
                                                                                     <small
                                                                                         class="text-danger">*</small></label>
-                                                                                <div class="col-sm-5">
+                                                                                <div class="col-sm-10">
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         wire:model='form.merk'
@@ -84,13 +84,13 @@
                                                                                     @enderror
                                                                                 </div>
                                                                             </div>
-                                                                            
+
                                                                             <div class="mb-2 row">
                                                                                 <label for="inputEmail3"
                                                                                     class="col-sm-2 col-form-label">Tipe
                                                                                     <small
                                                                                         class="text-danger">*</small></label>
-                                                                                <div class="col-sm-5">
+                                                                                <div class="col-sm-10">
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         wire:model='form.tipe'
@@ -146,23 +146,29 @@
                                                                                     <td> {{ $item->merk ?? '-' }}</td>
                                                                                     <td> {{ $item->tipe ?? '-' }}</td>
                                                                                     <td>
-                                                                                        <div
-                                                                                            class="gap-3 table-actions d-flex align-items-center fs-6">
-                                                                                            <div class="mr-2">
-                                                                                                <button type="button"
-                                                                                                    wire:click="getEdit('{{ $item->nopol }}')"
-                                                                                                    class="btn btn-warning btn-flat btn-sm"
-                                                                                                    data-toggle="tooltip"
-                                                                                                    data-placement="left"
-                                                                                                    title="Edit"><i
-                                                                                                        class="fas fa-pencil-alt"></i>
-                                                                                                </button>
-                                                                                                <button type="button" class="btn btn-danger btn-flat btn-sm"
-                                                                                                wire:click="delete('{{ $item->nopol }}')"><i
-                                                                                                    class="fas fa-trash"></i>
-                                                                                                </button>
+                                                                                        @if ($item->nopol == 'Lainnya')
+                                                                                        @else
+                                                                                            <div
+                                                                                                class="gap-3 table-actions d-flex align-items-center fs-6">
+                                                                                                <div class="mr-2">
+                                                                                                    <button
+                                                                                                        type="button"
+                                                                                                        wire:click="getEdit('{{ $item->nopol }}')"
+                                                                                                        class="btn btn-warning btn-flat btn-sm"
+                                                                                                        data-toggle="tooltip"
+                                                                                                        data-placement="left"
+                                                                                                        title="Edit"><i
+                                                                                                            class="fas fa-pencil-alt"></i>
+                                                                                                    </button>
+                                                                                                    <button
+                                                                                                        type="button"
+                                                                                                        class="btn btn-danger btn-flat btn-sm"
+                                                                                                        wire:click="delete('{{ $item->nopol }}')"><i
+                                                                                                            class="fas fa-trash"></i>
+                                                                                                    </button>
+                                                                                                </div>
                                                                                             </div>
-                                                                                        </div>
+                                                                                        @endif
                                                                                     </td>
                                                                                 </tr>
                                                                             @endforeach

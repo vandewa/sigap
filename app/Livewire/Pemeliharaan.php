@@ -12,7 +12,7 @@ class Pemeliharaan extends Component
 
     use WithPagination;
 
-    public $idHapus, $edit = false, $idnya, $cari;
+    public $idHapus, $edit = false, $idnya, $cari, $keterangan = false;
 
     public $form = [
         'kendaraan_id' => null,
@@ -20,6 +20,7 @@ class Pemeliharaan extends Component
         'tgl' => null,
         'pengguna_kendaraan' => null,
         'user_id' => null,
+        'keterangan_nopol' => null,
     ];
 
     public function mount()
@@ -29,14 +30,21 @@ class Pemeliharaan extends Component
 
     public function ambilKendaraan()
     {
-        return Kendaraan::all()->toArray();
+        if (auth()->user()->hasRole('superadmin')) {
+            return Kendaraan::all()->toArray();
+        } else {
+            return Kendaraan::where('nopol', '!=', 'Lainnya')->get()->toArray();
+        }
     }
 
     public function getEdit($a)
     {
-        $this->form = ModelsPemeliharaan::find($a)->only(['kendaraan_id', 'tgl', 'pengguna_kendaraan']);
+        $this->form = ModelsPemeliharaan::find($a)->only(['kendaraan_id', 'tgl', 'pengguna_kendaraan', 'keterangan_nopol']);
         $this->idHapus = $a;
         $this->edit = true;
+        if ($this->form['kendaraan_id'] == 'Lainnya') {
+            $this->keterangan = true;
+        }
     }
 
     public function save()
@@ -110,6 +118,18 @@ class Pemeliharaan extends Component
     {
         $this->edit = false;
         $this->reset();
+    }
+
+    public function updated($property)
+    {
+        if ($property === 'form.kendaraan_id') {
+            if ($this->form['kendaraan_id'] == 'Lainnya') {
+                $this->keterangan = true;
+            } else {
+                $this->keterangan = false;
+                $this->form['keterangan_nopol'] = null;
+            }
+        }
     }
 
     public function render()
