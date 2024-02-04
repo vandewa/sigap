@@ -114,7 +114,7 @@ class Transaksi extends Component
         ]);
 
         if ($this->photo) {
-            $foto = $this->photo->store('public/photos', 'gcs');
+            $foto = $this->photo->store('sigap/photos', 'gcs');
         }
         $this->form2['path'] = $foto ?? null;
         $this->form2['pemeliharaan_id'] = $this->idnya;
@@ -161,7 +161,7 @@ class Transaksi extends Component
         ]);
 
         if ($this->photo) {
-            $foto = $this->photo->store('public/photos', 'gcs');
+            $foto = $this->photo->store('sigap/photos', 'gcs');
             $this->form2['path'] = $foto;
         }
         ModelsTransaksi::find($this->idHapus)->update($this->form2);
