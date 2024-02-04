@@ -289,14 +289,31 @@
                                                                                             <small
                                                                                                 class="text-danger">*</small></label>
                                                                                         <div class="col-sm-8">
-                                                                                            <input type="file"
-                                                                                                class="form-control"
-                                                                                                wire:model.live="photo"
-                                                                                                accept="image/png, image/jpeg">
-                                                                                            @error('photo')
-                                                                                                <span
-                                                                                                    class="form-text text-danger">{{ $message }}</span>
-                                                                                            @enderror
+                                                                                            <div x-data="{ uploading: false, progress: 0 }"
+                                                                                                x-on:livewire-upload-start="uploading = true"
+                                                                                                x-on:livewire-upload-finish="uploading = false"
+                                                                                                x-on:livewire-upload-cancel="uploading = false"
+                                                                                                x-on:livewire-upload-error="uploading = false"
+                                                                                                x-on:livewire-upload-progress="progress = $event.detail.progress">
+
+                                                                                                <input type="file"
+                                                                                                    class="form-control"
+                                                                                                    wire:model.live="photo"
+                                                                                                    accept="image/png, image/jpeg">
+                                                                                                @error('photo')
+                                                                                                    <span
+                                                                                                        class="form-text text-danger">{{ $message }}</span>
+                                                                                                @enderror
+                                                                                                <div
+                                                                                                    x-show="uploading">
+                                                                                                    <progress
+                                                                                                        max="100"
+                                                                                                        x-bind:value="progress"></progress>
+                                                                                                    <span
+                                                                                                        x-text="progress"><!-- Will output: "bar" -->
+                                                                                                    </span> %
+                                                                                                </div>
+                                                                                            </div>
                                                                                         </div>
                                                                                         <div class="col-md-12">
                                                                                             <div
@@ -304,7 +321,7 @@
                                                                                                 @if ($form2['path'] ?? '')
                                                                                                     @if ($photo)
                                                                                                     @else
-                                                                                                        <img src="{{ asset(str_replace('public', 'storage', $form2['path'])) }}"
+                                                                                                        <img src="{{ route('helper.show-picture', ['path' => $form2['path']]) }}"
                                                                                                             style="max-width: 500px; max-height:400px;">
                                                                                                     @endif
 
@@ -322,7 +339,8 @@
                                                                             </div>
                                                                             <div class="mt-3 card-footer">
                                                                                 <button type="submit"
-                                                                                    class="btn btn-info">Simpan</button>
+                                                                                    class="btn btn-info">Simpan
+                                                                                </button>
                                                                             </div>
                                                                         </form>
                                                                     @endif

@@ -1,7 +1,9 @@
 <?php
 
 use App\Livewire\User;
+use App\Livewire\Kegiatan;
 use App\Livewire\Keuangan;
+use App\Livewire\Dashboard;
 use App\Livewire\Transaksi;
 use App\Livewire\User\Role;
 use App\Livewire\UserIndex;
@@ -13,10 +15,9 @@ use App\Livewire\Master\Kendaraan;
 use App\Livewire\Master\Perawatan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HelperController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
-use App\Livewire\Dashboard;
-use App\Livewire\Kegiatan;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,5 +71,6 @@ Route::middleware([
     Route::get('kegiatan', Kegiatan::class)->name('kegiatan');
     Route::get('keuangan', Keuangan::class)->name('keuangan');
     Route::get('transaksi/{id?}', Transaksi::class)->name('transaksi');
+    Route::get('show-picture}', [HelperController::class, 'showPicture'])->name('helper.show-picture');
 
 });
