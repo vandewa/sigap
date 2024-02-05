@@ -39,6 +39,8 @@ Route::resource('register', RegisterController::class);
 Route::get('docs', function () {
     return File::get(public_path() . '/documentation.html');
 });
+Route::get('show-picture', [HelperController::class, 'showPicture'])->name('helper.show-picture');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -71,6 +73,5 @@ Route::middleware([
     Route::get('kegiatan', Kegiatan::class)->name('kegiatan');
     Route::get('keuangan', Keuangan::class)->name('keuangan');
     Route::get('transaksi/{id?}', Transaksi::class)->name('transaksi');
-    Route::get('show-picture}', [HelperController::class, 'showPicture'])->name('helper.show-picture');
 
 });
