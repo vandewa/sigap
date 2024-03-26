@@ -87,6 +87,8 @@ class User extends Component
         }
 
         ModelsUser::find($this->user)->update($this->form);
+        $a = ModelsUser::find($this->user);
+        $a->syncRoles([$this->role]);
         $this->reset();
         $this->edit = false;
 

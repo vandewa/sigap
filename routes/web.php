@@ -39,8 +39,8 @@ Route::resource('register', RegisterController::class);
 Route::get('docs', function () {
     return File::get(public_path() . '/documentation.html');
 });
-Route::get('show-picture', [HelperController::class, 'showPicture'])->name('helper.show-picture');
 
+Route::get('show-picture', [HelperController::class, 'showPicture'])->name('helper.show-picture');
 
 Route::middleware([
     'auth:sanctum',
